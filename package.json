@@ -1,0 +1,41 @@
+{
+  "name": "event",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^6.0.0",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "express-routes": "^1.0.1",
+    "express-session": "^1.19.0",
+    "mongoose": "^9.2.1",
+    "nodemon": "^3.1.11",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^9.0.1",
+    "socket.io": "^4.8.3"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.1.0",
+    "utf-8-validate": "^6.0.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saritasolaskar/Event-Transport-Management-System.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saritasolaskar/Event-Transport-Management-System/issues"
+  },
+  "homepage": "https://github.com/saritasolaskar/Event-Transport-Management-System#readme"
+}
