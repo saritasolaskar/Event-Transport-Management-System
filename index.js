@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-let port = 5000;
+// let port = 5000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -33,6 +33,9 @@ async function main() {
 //common paths
 const PORT = process.env.PORT || 3000;
 
+app.listen(PORT, () => {
+    console.log(`server is running on port ${port}`);
+});
 app.get("/", (req, res) => {
     res.render("Landing_Page");
 });
