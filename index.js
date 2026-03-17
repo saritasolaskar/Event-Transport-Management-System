@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
- 
+  
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -31,7 +31,7 @@ async function main() {
 
 
 //common paths
-const PORT = process.env.PORT || 3000;
+const PORT = 5000;
 
 app.listen(PORT, () => {
     console.log(`server is running on port ${port}`);
