@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Assign Driver</title>
+<title>Add New Driver</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -46,43 +46,38 @@ background:#334155;
 .main{
 margin-left:220px;
 padding:40px;
+display:flex;
+justify-content:center;
 }
 
 /* FORM CARD */
 
-.form-card{
-max-width:500px;
+.form-container{
 background:white;
 padding:30px;
+width:420px;
 border-radius:10px;
 box-shadow:0 3px 15px rgba(0,0,0,0.1);
 }
 
-.form-card h2{
-margin-top:0;
+.form-container h2{
+text-align:center;
+margin-bottom:20px;
 color:#0f172a;
-margin-bottom:25px;
 }
 
-/* FORM ELEMENTS */
+/* INPUTS */
 
-label{
-display:block;
-margin-bottom:6px;
-font-weight:bold;
-color:#334155;
-}
-
-select{
+input{
 width:100%;
 padding:10px;
-border:1px solid #cbd5e1;
+margin:8px 0;
 border-radius:6px;
+border:1px solid #cbd5e1;
 font-size:14px;
-margin-bottom:20px;
 }
 
-select:focus{
+input:focus{
 outline:none;
 border-color:#2563eb;
 }
@@ -92,6 +87,7 @@ border-color:#2563eb;
 button{
 width:100%;
 padding:12px;
+margin-top:10px;
 background:#2563eb;
 color:white;
 border:none;
@@ -130,41 +126,27 @@ background:#1d4ed8;
 
 <div class="main">
 
-<div class="form-card">
+<div class="form-container">
 
-<h2>Assign Driver to Event</h2>
+<h2>Add New Driver</h2>
 
-<form action="/admin/assign-driver" method="POST">
+<form action="/admin/adddriver" method="POST">
 
-<label>Select Driver</label>
+<input type="text" name="username" placeholder="Username" required>
 
-<select name="driverId">
+<input type="email" name="email" placeholder="Email Address" required>
 
-<% drivers.forEach(driver=>{ %>
+<input type="password" name="password" placeholder="Set Password" required>
 
-<option value="<%= driver._id %>">
-<%= driver.user.username %>
-</option>
+<input type="text" name="phone" placeholder="Phone Number" required>
 
-<% }) %>
+<input type="text" name="licenseNumber" placeholder="License Number" required>
 
-</select>
+<input type="text" name="vehicleType" placeholder="Vehicle Type" required>
 
-<label>Select Event</label>
+<input type="text" name="vehicleNumber" placeholder="Vehicle Number" required>
 
-<select name="eventId">
-
-<% events.forEach(event=>{ %>
-
-<option value="<%= event._id %>">
-<%= event.eventName %>
-</option>
-
-<% }) %>
-
-</select>
-
-<button type="submit">Assign Driver</button>
+<button type="submit">Add New Driver</button>
 
 </form>
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<style>
+#map{
+height:600px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Driver Live Tracking</h2>
+
+<div id="map"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+var map = L.map('map').setView([18.5204,73.8567],12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+maxZoom:19
+}).addTo(map);
+
+const socket = io();
+
+let driverMarkers = {};
+
+socket.on("updateLocation",(data)=>{
+
+const id = data.driverId;
+
+if(driverMarkers[id]){
+
+driverMarkers[id].setLatLng([data.lat,data.lng]);
+
+}else{
+
+driverMarkers[id] = L.marker([data.lat,data.lng])
+.addTo(map)
+.bindPopup("Driver: "+id);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>

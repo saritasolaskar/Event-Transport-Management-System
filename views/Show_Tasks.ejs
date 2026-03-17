@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Assign Driver</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Driver Tasks</title>
 
 <style>
 
@@ -45,68 +47,63 @@ background:#334155;
 
 .main{
 margin-left:220px;
-padding:40px;
-}
-
-/* FORM CARD */
-
-.form-card{
-max-width:500px;
-background:white;
 padding:30px;
-border-radius:10px;
-box-shadow:0 3px 15px rgba(0,0,0,0.1);
 }
 
-.form-card h2{
-margin-top:0;
-color:#0f172a;
-margin-bottom:25px;
-}
-
-/* FORM ELEMENTS */
-
-label{
-display:block;
-margin-bottom:6px;
-font-weight:bold;
-color:#334155;
-}
-
-select{
-width:100%;
-padding:10px;
-border:1px solid #cbd5e1;
-border-radius:6px;
-font-size:14px;
+.page-title{
+font-size:28px;
 margin-bottom:20px;
+color:#1e293b;
 }
 
-select:focus{
-outline:none;
-border-color:#2563eb;
+/* TASK CARDS */
+
+.task-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
 }
 
-/* BUTTON */
-
-button{
-width:100%;
-padding:12px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:6px;
-font-size:16px;
-cursor:pointer;
+.task-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
 transition:0.2s;
 }
 
-button:hover{
-background:#1d4ed8;
+.task-card:hover{
+transform:translateY(-5px);
+box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+.task-card h3{
+margin-top:0;
+color:#0f172a;
+margin-bottom:10px;
+}
+
+.task-info{
+margin:6px 0;
+font-size:14px;
+}
+
+.badge{
+display:inline-block;
+padding:4px 10px;
+background:#22c55e;
+color:white;
+border-radius:6px;
+font-size:12px;
+margin-top:10px;
+}
+
+.empty{
+color:#64748b;
+font-size:16px;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -126,47 +123,39 @@ background:#1d4ed8;
 
 </div>
 
+
 <!-- MAIN CONTENT -->
 
 <div class="main">
 
-<div class="form-card">
+<h1 class="page-title">Driver Event Assignments</h1>
 
-<h2>Assign Driver to Event</h2>
+<% if(tasks.length === 0){ %>
 
-<form action="/admin/assign-driver" method="POST">
+<p class="empty">No tasks assigned yet.</p>
 
-<label>Select Driver</label>
+<% } %>
 
-<select name="driverId">
+<div class="task-container">
+<% tasks.forEach(task => { %>
 
-<% drivers.forEach(driver=>{ %>
+<div class="task-card">
 
-<option value="<%= driver._id %>">
-<%= driver.user.username %>
-</option>
+<h3><%= task.event.eventName %></h3>
 
-<% }) %>
+<p>
+<strong>Driver Name:</strong>
+<%= task.driver?.user?.username || "Driver not found" %>
+</p>
 
-</select>
+<p>
+<strong>Phone:</strong>
+<%= task.driver?.phone || "N/A" %>
+</p>
 
-<label>Select Event</label>
-
-<select name="eventId">
-
-<% events.forEach(event=>{ %>
-
-<option value="<%= event._id %>">
-<%= event.eventName %>
-</option>
+</div>
 
 <% }) %>
-
-</select>
-
-<button type="submit">Assign Driver</button>
-
-</form>
 
 </div>
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Driver Location</title>
+</head>
+
+<body>
+
+<h2>Driver Tracking Active</h2>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+const socket = io();
+
+const driverId = "<%= driverId %>";
+
+if(navigator.geolocation){
+
+navigator.geolocation.watchPosition((position)=>{
+
+const data = {
+driverId:driverId,
+lat:position.coords.latitude,
+lng:position.coords.longitude
+};
+
+socket.emit("driverLocation",data);
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

@@ -37,7 +37,7 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("Landing_Page");
 });
 
 
@@ -106,7 +106,7 @@ app.use("/auth", authRoutes);
 
 
 app.get("/login", (req, res) => {
-    res.render("login", { error: req.flash("error") });
+    res.render("Login_Page", { error: req.flash("error") });
 });
 
 
